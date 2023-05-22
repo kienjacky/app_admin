@@ -61,17 +61,9 @@
 </template>
 
 <script>
-    import {
-        MDBRow,
-        MDBCol,
-        MDBInput,
-        MDBCheckbox,
-        MDBBtn,
-        MDBIcon
-    } from "mdb-vue-ui-kit";
-    import { ref } from "vue";
+    // import { ref } from "vue";
 
-    const form2Email = ref("");
-    const form2Password = ref("");
-    const form2LoginCheck = ref(true);
+    // const form2Email = ref("");
+    // const form2Password = ref("");
+    // const form2LoginCheck = ref(true);
 </script>
