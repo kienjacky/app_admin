@@ -1,14 +1,43 @@
 <template>
   <div class="container">
-    <form @submit.prevent="register">
+    <form @submit.prevent="handleSubmit" id="frm_register">
       <h2 class="mb-3">Register</h2>
+      <div class="input">
+        <label for="username">Username</label>
+        <input
+            class="form-control"
+            type="text"
+            name="username"
+            v-model="username"
+            placeholder="Username"
+        />
+      </div>
       <div class="input">
         <label for="email">Email address</label>
         <input
             class="form-control"
             type="text"
             name="email"
+            v-model="email"
             placeholder="email@adress.com"
+        />
+      </div>
+      <div class="input">
+        <label for="address">Address</label>
+        <input class="form-control"
+               type="text"
+               name="address"
+               v-model="address"
+               placeholder="Address"
+        />
+      </div>
+      <div class="input">
+        <label for="phone">Phone</label>
+        <input class="form-control"
+               type="text"
+               name="phone"
+               v-model="phone"
+               placeholder="Phone"
         />
       </div>
       <div class="input">
@@ -17,6 +46,7 @@
             class="form-control"
             type="password"
             name="password"
+            v-model="password"
             placeholder="password123"
         />
       </div>
@@ -28,58 +58,43 @@
       <button type="submit" id="register_button" class="mt-4 btn-pers">
         Register
       </button>
-      <div
-          class="alert alert-warning alert-dismissible fade show mt-5 d-none"
-          role="alert"
-          id="alert_2"
-      >
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-        <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-        ></button>
-      </div>
     </form>
   </div>
 </template>
 
 <script>
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import axios from "axios";
 
 export default {
+  name: "Register",
   data() {
     return {
-      email: "",
-      password: "123456",
+      username: '',
+      email: '',
+      address: '',
+      phone: '',
+      password: '',
     };
   },
   methods: {
-    register(submitEvent) {
-      // data update
-      this.email = submitEvent.target.elements.email.value;
-      this.password = submitEvent.target.elements.password.value;
-
-      // firebase registration
-      const auth = getAuth();
-      createUserWithEmailAndPassword(auth, this.email, this.password)
-          .then((userCredential) => {
-            const user = userCredential.user;
-            console.log(user);
-            console.log("Registration completed");
-            this.$router.push("/");
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode);
-            console.log(errorMessage);
-            let alert_2 = document.querySelector("#alert_2");
-            alert_2.classList.remove("d-none");
-            alert_2.innerHTML = errorMessage;
-            console.log(alert_2);
-          });
+    async handleSubmit() {
+       const response = await axios.post('/auth/signup', {
+         username: this.username,
+         email: this.email,
+         address: this.address,
+         phone: this.phone,
+         password: this.password,
+         role: ["admin"]
+       });
+      console.log(response)
+      this.$router.push("/");
+       // if (response.data.status == 200) {
+       //   this.$router.push("/");
+       // }else {
+       //   alert("Loi dang ky")
+       // }
+      //
     },
     moveToLogin() {
       this.$router.push("/");

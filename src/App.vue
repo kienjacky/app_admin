@@ -1,5 +1,5 @@
 <template>
-  <div class="background"></div>
+
 <!--  <div class="navbar">-->
 <!--    <nav class="nav">-->
 <!--      <div class="nav-el" id="name_project">-->
@@ -13,13 +13,13 @@
 <!--      </div>-->
 <!--    </nav>-->
 <!--  </div>-->
-  <router-view id="content" />
+  <router-view/>
 </template>
 
 <style>
 /* CUSTOM STYLE */
 
-#content {
+#frm_login, #frm_register {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -88,7 +88,8 @@
 .btn-pers {
   position: relative;
   left: 50%;
-  padding: 1em 2.5em;
+  margin-top: 1.5em;
+  padding: 1em 12.5em;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 2.5px;

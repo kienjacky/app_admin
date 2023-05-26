@@ -15,13 +15,15 @@ const routes = [
 			import(/* webpackChunkName: "about" */ "../views/RegisterView.vue"),
 	},
 	{
-		path: "/dashboard",
-		name: "dashboard",
+		path: "/home",
+		name: "home",
 		component: () =>
-			import(/* webpackChunkName: "about" */ "../views/DashboardView.vue"),
-		meta: {
-			authRequired: true,
-		},
+			import(/* webpackChunkName: "about" */ "../views/HomeView.vue"),
+
+		// Todo check signin
+		// meta: {
+		// 	authRequired: true,
+		// },
 	},
 ];
 
