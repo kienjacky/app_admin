@@ -179,13 +179,13 @@ export default {
       type: Array,
       default: () => [
         {
-          link: '#',
+          link: '/dashboard',
           name: 'Dashboard',
           tooltip: 'Dashboard',
           icon: 'bx-grid-alt',
         },
         {
-          link: '#',
+          link: '/user',
           name: 'User',
           tooltip: 'User',
           icon: 'bx-user',
