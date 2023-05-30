@@ -5,19 +5,22 @@
     />
   </div>
 
-  <div class="container">
-    <router-view/>
+  <div class="w-100">
+    <Header></Header>
   </div>
+  <router-view/>
 </template>
 
 <script>
 // import { defineComponent, ref } from "vue";
 import axios from "axios";
 import Sidebar from "@/component/Sidebar.vue";
+import Header from "@/component/Header.vue";
 export default ({
   name: "Home",
   components: {
-    Sidebar
+    Sidebar,
+    Header
   },
   data() {
     return {
