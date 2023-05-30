@@ -4,6 +4,10 @@
         @search-input-emit="search"
     />
   </div>
+
+  <div class="container">
+    <router-view/>
+  </div>
 </template>
 
 <script>
@@ -13,7 +17,7 @@ import Sidebar from "@/component/Sidebar.vue";
 export default ({
   name: "Home",
   components: {
-    Sidebar,
+    Sidebar
   },
   data() {
     return {
