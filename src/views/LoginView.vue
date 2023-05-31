@@ -1,7 +1,7 @@
 <template>
   <div class="container" id="frm_login">
     <Form  @submit="handleSubmit" :validation-schema="schema" v-slot="{ errors }">
-      <h2 class="mb-3">Login</h2>
+      <h2 class="mb-3 txt-login">Login</h2>
       <div class="input">
         <label>Username</label>
         <Field name="username" type="text" class="form-control" v-model="username" :class="{ 'is-invalid': errors.username }" />
@@ -12,9 +12,9 @@
         <Field name="password" type="password" class="form-control" v-model="password" :class="{ 'is-invalid': errors.password }" />
         <div class="invalid-feedback text-danger">{{errors.password}}</div>
       </div>
-      <div class="alternative-option mt-4 mb-4">
-        You don't have an account? <span @click="moveToRegister">Register</span>
-      </div>
+<!--      <div class="alternative-option mt-4 mb-4">-->
+<!--        You don't have an account? <span @click="moveToRegister">Register</span>-->
+<!--      </div>-->
       <button type="submit" class="btn-pers" id="login_button">
         Login
       </button>
@@ -27,6 +27,8 @@
 import axios from "axios";
 import { Field, Form } from "vee-validate";
 import * as Yup from 'yup';
+import { toast } from "vue3-toastify";
+import 'vue3-toastify/dist/index.css'
 
 export default {
   name: "Login",
@@ -44,25 +46,30 @@ export default {
           .required('Password is required')
     });
     return {
-      // username: "",
-      // password: "",
       schema
     };
   },
   methods: {
     async handleSubmit() {
-      const response = await axios.post('auth/signin', {
+      await axios.post('auth/signin', {
         username: this.username,
         password: this.password
-      });
+      }).then((response) => {
+        const getRole = response.data.data.roles;
 
-      const getRole = response.data.data.roles;
-
-      if (getRole === "[ROLE_ADMIN]") {
-        localStorage.setItem('token', response.data.data.accessToken)
-        this.$router.push("/dashboard");
-      } else {
-        this.$router.push("/");
+        if (getRole === "[ROLE_ADMIN]") {
+          localStorage.setItem('token', response.data.data.accessToken);
+          this.$router.push("/dashboard");
+        }else {
+          toast.error("Account does not have permission to login", {
+            autoClose: 3000
+          })
+        }
+      }).catch(function () {
+          toast.error("Username or Password is not valid!", {
+            autoClose: 3000
+          })
+        });
       }
     },
     // Register Path
@@ -76,12 +83,25 @@ export default {
       this.password = '';
       reset(); // reset validation states
     },
-  },
 };
 </script>
 
 <style>
 .text-danger {
   color: red;
+}
+#frm_login, #frm_register {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 28% !important;
+  transform: translate(-50%, -50%);
+  border: 1px solid lightgray;
+  padding: 4rem 4rem;
+  border-radius: 5px;
+  background: #fefefe;
+}
+.txt-login {
+  text-align: center;
 }
 </style>

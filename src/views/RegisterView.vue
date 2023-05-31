@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Form @submit.prevent="handleSubmit" id="frm_register"  :validation-schema="schema" v-slot="{ errors }">
+    <Form @submit="handleSubmit" id="frm_register"  :validation-schema="schema" v-slot="{ errors }">
       <h2 class="mb-3">Register</h2>
       <div class="input">
         <label for="username">Username <span class="text-danger">*</span></label>
@@ -45,7 +45,7 @@
                v-model="phone"
                v-validate="'required|min:3|max:12'"
                :class="{ 'is-invalid': errors.phone}"
-               placeholder="Phone"
+               placeholder="024xxxxxxxx"
         />
         <div class="invalid-feedback"><span class="text-danger">{{ errors.phone }}</span></div>
       </div>
@@ -65,7 +65,7 @@
       <div class="input">
         <label for="confirmPassword">Confirm Password <span class="text-danger">*</span></label>
         <Field name="confirmPassword"
-               class="confirmPassword"
+               class="form-control"
                type="password"
                v-model="confirmPassword"
                :class="{ 'is-invalid': errors.confirmPassword}"
@@ -90,7 +90,8 @@
 import axios from "axios";
 import { Form, Field } from 'vee-validate';
 import * as Yup from 'yup';
-
+import { toast } from "vue3-toastify";
+import 'vue3-toastify/dist/index.css'
 
 export default {
   components: {
@@ -104,8 +105,8 @@ export default {
           .required('Username is required'),
       phone: Yup.string()
           .required('Phone is required')
-          .max(12, 'Phone must be at 12 characters')
-          .matches(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/, 'Phone is in valid'),
+          .max(10, 'Phone must be at 12 characters')
+          .matches(/^(([+]{0,1}\d{2})|\d?)[\s-]?[0-9]{2}[\s-]?[0-9]{3}[\s-]?[0-9]{4}$/, 'Phone is in valid'),
       email: Yup.string()
           .required('Email is required')
           .email('Email is invalid'),
@@ -123,7 +124,7 @@ export default {
   },
   methods: {
     async handleSubmit() {
-       const response = await axios.post('/auth/signup', {
+       const response = await axios.post('auth/signup', {
          username: this.username,
          email: this.email,
          address: this.address,
@@ -131,9 +132,16 @@ export default {
          password: this.password,
          role: ["admin"]
        });
+
        if (response.data.status == 200) {
-         this.$router.push("/");
+         toast.success('Register is successful', {
+           autoClose: 40000,
+         });
+         // this.$router.push("/");
        }else {
+         toast.error("Register is error", {
+           autoClose: 40000
+         })
          this.$router.push("/register");
        }
     },
