@@ -4,6 +4,7 @@ import HomeView from "../views/HomeView.vue";
 import { getAuth } from "firebase/auth";
 import DashboardView from "../views/DashboardView.vue"
 import UserView from "../views/UserView.vue";
+import PageNotFound from "../component/404.vue"
 
 const routes = [
 	{
@@ -16,6 +17,11 @@ const routes = [
 		name: "register",
 		component: () =>
 			import(/* webpackChunkName: "about" */ "../views/RegisterView.vue"),
+	},
+	{
+		path:"/404",
+		name: "404",
+		component: PageNotFound
 	},
 	{
 		path: "/dashboard",

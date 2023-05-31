@@ -5,10 +5,20 @@
     />
   </div>
 
+<!--  Main Header-->
   <div class="main-header w-100">
     <Header></Header>
   </div>
-  <router-view/>
+
+<!--  Main Content-->
+  <div class="d-flex main-content">
+    <router-view/>
+  </div>
+
+<!--  Main Footer-->
+<!--  <div class="main-footer">-->
+<!--    <Footer></Footer>-->
+<!--  </div>-->
 </template>
 
 <script>
@@ -16,11 +26,13 @@
 import axios from "axios";
 import Sidebar from "@/component/Sidebar.vue";
 import Header from "@/component/Header.vue";
+// import Footer from "@/component/Footer.vue";
 export default ({
   name: "Home",
   components: {
     Sidebar,
-    Header
+    Header,
+    // Footer,
   },
   data() {
     return {
@@ -55,8 +67,16 @@ export default ({
 
 <style>
 .main-header {
-  margin-left: -15.5rem !important;
   position: relative;
   z-index: 2023;
+}
+.main-footer {
+  position: relative;
+  height: 58px;
+  top: 51.3rem !important;
+  background-color: aliceblue;
+}
+.main-content {
+  height: auto;
 }
 </style>

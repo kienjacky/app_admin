@@ -45,7 +45,7 @@
       >
         <ul
             class="nav-list"
-            style="overflow: visible"
+            style="overflow: visible; padding-left: 0"
         >
 
           <li>
@@ -62,37 +62,6 @@
             </router-link>
           </li>
         </ul>
-      </div>
-
-      <div
-          v-if="isLoggedIn"
-          class="profile"
-      >
-        <div class="profile-details">
-          <img
-              v-if="profileImg"
-              :src="profileImg"
-              alt="profileImg"
-          >
-          <i
-              v-else
-              class="bx bxs-user-rectangle"
-          />
-          <div class="name_job">
-            <div class="name">
-              {{ profileName }}
-            </div>
-            <div class="job">
-              {{ profileRole }}
-            </div>
-          </div>
-        </div>
-        <i
-            v-if="isExitButton"
-            class="bx bx-log-out"
-            id="log_out"
-            @click.stop="$emit('button-exit-clicked')"
-        />
       </div>
     </div>
   </div>
@@ -413,12 +382,6 @@ body {
   font-size: 28px;
   text-align: center;
   line-height: 60px;
-}
-.sidebar .nav-list {
-  margin-top: 20px;
-  /* margin-bottom: 60px; */
-  /* height: 100%; */
-  /* min-height: min-content; */
 }
 .sidebar li {
   position: relative;
