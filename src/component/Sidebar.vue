@@ -47,57 +47,19 @@
             class="nav-list"
             style="overflow: visible"
         >
-          <li
-              id="links_search"
-              v-if="isSearch"
-              @click="isOpened = true"
-          >
-            <i class="bx bx-search" />
-            <input
-                type="text"
-                :placeholder="searchPlaceholder"
-                @input="$emit('search-input-emit', $event.target.value)"
-            >
-            <span
-                data-target="links_search"
-                class="tooltip"
-            >{{
-                searchTooltip
-              }}</span>
+
+          <li>
+            <router-link class="link" to="/dashboard">
+              <i class="bx bx-grid-alt"></i>
+              <span class="links_name">Dashboard</span>
+            </router-link>
           </li>
 
-          <li
-              v-for="(menuItem, index) in menuItems"
-              :key="index"
-              :id="'links_' + index"
-          >
-            <router-link
-                v-if="isUsedVueRouter"
-                :to="menuItem.link"
-            >
-              <i
-                  class="bx"
-                  :class="menuItem.icon || 'bx-square-rounded'"
-              />
-              <span class="links_name">{{ menuItem.name }}</span>
+          <li>
+            <router-link class="link" to="/user">
+              <i class="bx bx-user"></i>
+              <span class="links_name">User</span>
             </router-link>
-            <a
-                v-else
-                @click.stop.prevent="$emit('menuItemClcked', menuItem.link)"
-                :href="menuItem.link"
-            >
-              <i
-                  class="bx"
-                  :class="menuItem.icon || 'bx-square-rounded'"
-              />
-              <span class="links_name">{{ menuItem.name }}</span>
-            </a>
-            <span
-                :data-target="'links_' + index"
-                class="tooltip"
-            >{{
-                menuItem.tooltip || menuItem.name
-              }}</span>
           </li>
         </ul>
       </div>
@@ -400,7 +362,7 @@ body {
   min-height: min-content;
   /* overflow-y: auto; */
   width: 78px;
-  background: var(--bg-color);
+  background: #222d32;
   /* padding: 6px 14px 0 14px; */
   z-index: 99;
   transition: all 0.5s ease;
@@ -531,13 +493,13 @@ body {
   align-items: center;
   text-decoration: none;
   transition: all 0.4s ease;
-  background: var(--bg-color);
+  background: #222d32;
 }
 .sidebar li a:hover {
-  background: var(--menu-items-hover-color);
+  //background: var(--menu-items-hover-color);
 }
 .sidebar li a .links_name {
-  color: var(--menu-items-text-color);
+  color: white;
   font-size: 15px;
   font-weight: 400;
   white-space: nowrap;
@@ -552,7 +514,7 @@ body {
 .sidebar li a:hover .links_name,
 .sidebar li a:hover i {
   transition: all 0.5s ease;
-  color: var(--bg-color);
+  color: white;
 }
 .sidebar li router-link {
   display: flex;

@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LoginView from "../views/LoginView.vue";
+import HomeView from "../views/HomeView.vue";
 import { getAuth } from "firebase/auth";
+import DashboardView from "../views/DashboardView.vue"
+import UserView from "../views/UserView.vue";
 
 const routes = [
 	{
@@ -15,10 +18,19 @@ const routes = [
 			import(/* webpackChunkName: "about" */ "../views/RegisterView.vue"),
 	},
 	{
-		path: "/home",
+		path: "/dashboard",
 		name: "home",
-		component: () =>
-			import(/* webpackChunkName: "about" */ "../views/HomeView.vue"),
+		component: HomeView,
+		children: [
+			{
+				path:"/dashboard",
+				component: DashboardView
+			},
+			{
+				path:"/user",
+				component: UserView
+			}
+		]
 
 		// Todo check signin
 		// meta: {

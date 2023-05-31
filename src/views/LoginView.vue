@@ -60,7 +60,7 @@ export default {
 
       if (getRole === "[ROLE_ADMIN]") {
         localStorage.setItem('token', response.data.data.accessToken)
-        this.$router.push("/home");
+        this.$router.push("/dashboard");
       } else {
         this.$router.push("/");
       }
