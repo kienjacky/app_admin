@@ -2,20 +2,29 @@
   <div class="container" id="frm_login">
     <Form  @submit="handleSubmit" :validation-schema="schema" v-slot="{ errors }">
       <h2 class="mb-3 txt-login">Login</h2>
-      <div class="input">
-        <label>Username</label>
-        <Field name="username" type="text" class="form-control" v-model="username" :class="{ 'is-invalid': errors.username }" />
+      <div class="input-group mb-3">
+        <!--        <label>Username</label>-->
+        <Field name="username" type="text" class="form-control" v-model="username" :class="{ 'is-invalid': errors.username }" placeholder="Please enter username"/>
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <span class="fas fa-user"></span>
+          </div>
+        </div>
         <div class="invalid-feedback text-danger">{{errors.username}}</div>
       </div>
-      <div class="input">
-        <label for="password">Password</label>
-        <Field name="password" type="password" class="form-control" v-model="password" :class="{ 'is-invalid': errors.password }" />
+      <div class="input-group mb-3">
+        <Field name="password" type="password" class="form-control" v-model="password" :class="{ 'is-invalid': errors.password }"  placeholder="Please enter password"/>
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <span class="fas fa-lock"></span>
+          </div>
+        </div>
         <div class="invalid-feedback text-danger">{{errors.password}}</div>
       </div>
-<!--      <div class="alternative-option mt-4 mb-4">-->
-<!--        You don't have an account? <span @click="moveToRegister">Register</span>-->
-<!--      </div>-->
-      <button type="submit" class="btn-pers" id="login_button">
+      <!--      <div class="alternative-option mt-4 mb-4">-->
+      <!--        You don't have an account? <span @click="moveToRegister">Register</span>-->
+      <!--      </div>-->
+      <button type="submit" class="btn btn-primary mt-4" id="login_button">
         Login
       </button>
     </Form>
@@ -66,23 +75,23 @@ export default {
           })
         }
       }).catch(function () {
-          toast.error("Username or Password is not valid!", {
-            autoClose: 3000
-          })
-        });
-      }
-    },
-    // Register Path
-    moveToRegister() {
-      this.$router.push("/register");
-    },
+        toast.error("Username or Password is not valid!", {
+          autoClose: 3000
+        })
+      });
+    }
+  },
+  // Register Path
+  moveToRegister() {
+    this.$router.push("/register");
+  },
 
-    // clear form
-    clearForm(reset) {
-      this.email = '';
-      this.password = '';
-      reset(); // reset validation states
-    },
+  // clear form
+  clearForm(reset) {
+    this.email = '';
+    this.password = '';
+    reset(); // reset validation states
+  },
 };
 </script>
 
@@ -103,5 +112,8 @@ export default {
 }
 .txt-login {
   text-align: center;
+}
+#login_button {
+  padding: 2% 45.5%;
 }
 </style>

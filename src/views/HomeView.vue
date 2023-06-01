@@ -1,24 +1,30 @@
 <template>
   <div>
-    <sidebar
-        @search-input-emit="search"
-    />
+    <Sidebar/>
   </div>
-
-<!--  Main Header-->
-  <div class="main-header w-100">
+  <div>
     <Header></Header>
   </div>
+  <!--  <div>-->
+  <!--    <sidebar-->
+  <!--        @search-input-emit="search"-->
+  <!--    />-->
+  <!--  </div>-->
 
-<!--  Main Content-->
-  <div class="d-flex main-content">
-    <router-view/>
-  </div>
+  <!--  Main Header-->
+  <!--  <div class="main-header w-100">-->
+  <!--    <Header></Header>-->
+  <!--  </div>-->
 
-<!--  Main Footer-->
-<!--  <div class="main-footer">-->
-<!--    <Footer></Footer>-->
-<!--  </div>-->
+  <!--  Main Content-->
+  <!--  <div class="d-flex main-content h-100">-->
+  <!--    <router-view/>-->
+  <!--  </div>-->
+
+  <!--  Main Footer-->
+  <!--  <div class="main-footer">-->
+  <!--    <Footer></Footer>-->
+  <!--  </div>-->
 </template>
 
 <script>
@@ -78,5 +84,6 @@ export default ({
 }
 .main-content {
   height: auto;
+  min-height: 920px !important;
 }
 </style>
