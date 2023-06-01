@@ -99,7 +99,7 @@ export default {
 .text-danger {
   color: red;
 }
-#frm_login, #frm_register {
+#frm_login {
   position: absolute;
   top: 50%;
   left: 50%;

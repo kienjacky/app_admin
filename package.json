@@ -39,7 +39,7 @@
     "tailwindcss": "^3.3.2"
   },
   "eslintConfig": {
-    "root": false,
+    "root": true,
     "env": {
       "node": true
     },

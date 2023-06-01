@@ -4,6 +4,7 @@ import HomeView from "../views/HomeView.vue";
 import { getAuth } from "firebase/auth";
 import DashboardView from "../views/DashboardView.vue"
 import UserView from "../views/UserView.vue";
+import RegistMember from "../views/user/UserAddComponent.vue";
 import PageNotFound from "../component/404.vue"
 
 const routes = [
@@ -35,6 +36,10 @@ const routes = [
 			{
 				path:"/user",
 				component: UserView
+			},
+			{
+				path: "/user/regist",
+				component: RegistMember
 			}
 		]
 

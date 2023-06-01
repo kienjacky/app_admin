@@ -10,6 +10,7 @@ import '../src/plugins/bootstrap/js/bootstrap.bundle.min.js';
 import '../src/assets/dist/js/adminlte.js';
 import '../src/dist/chart.js/Chart.min.js';
 
+
 createApp(App).use(router).mount("#app");
 
 // Import the functions you need from the SDKs you need

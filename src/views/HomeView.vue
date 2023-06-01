@@ -5,30 +5,15 @@
   <div>
     <Header></Header>
   </div>
-  <!--  <div>-->
-  <!--    <sidebar-->
-  <!--        @search-input-emit="search"-->
-  <!--    />-->
-  <!--  </div>-->
 
-  <!--  Main Header-->
-  <!--  <div class="main-header w-100">-->
-  <!--    <Header></Header>-->
-  <!--  </div>-->
+  <div class="content-wrapper">
+    <router-view/>
+  </div>
 
-  <!--  Main Content-->
-  <!--  <div class="d-flex main-content h-100">-->
-  <!--    <router-view/>-->
-  <!--  </div>-->
-
-  <!--  Main Footer-->
-  <!--  <div class="main-footer">-->
-  <!--    <Footer></Footer>-->
-  <!--  </div>-->
+<!--  <Footer/>-->
 </template>
 
 <script>
-// import { defineComponent, ref } from "vue";
 import axios from "axios";
 import Sidebar from "@/component/Sidebar.vue";
 import Header from "@/component/Header.vue";
